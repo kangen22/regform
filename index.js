@@ -19,17 +19,8 @@ const validateInputs = () => {
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
 
-    if (usernameValue === '') {
-        setError(username, "Поле ім'я не може бути порожнім");
-    } else {
-        setSuccess(username);
-    }
-
-    if (surnameValue === '') {
-        setError(surname, "Поле прізвище не може бути порожнім");
-    } else {
-        setSuccess(surname);
-    }
+    checkInputs(usernameValue, username, "ім'я");
+    checkInputs(surnameValue, surname, "прізвище");
 
     if (emailValue === '') {
         setError(email, `Поле пошта не може бути порожнім`);
@@ -54,6 +45,14 @@ const validateInputs = () => {
         setError(password2, "Паролі не співпадають");
     } else {
         setSuccess(password2);
+    }
+}
+
+const checkInputs = (value, element, name) => {
+    if (value === '') {
+        setError(element, `Поле ${name} не може бути порожнім`);
+    } else {
+        setSuccess(element);
     }
 }
 
