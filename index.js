@@ -33,6 +33,9 @@ const validateInputs = () => {
 
     if (emailValue === '') {
         setError(email, `Поле пошта не може бути порожнім`);
+    }
+    else if (!isValidEmail(emailValue)) {
+        setError(email, 'Некоректна пошта')
     } else {
         setSuccess(email);
     }
@@ -70,4 +73,9 @@ const setSuccess = (input) => {
     errorDisplay.innerText = '';
     inputControl.classList.add('success');
     inputControl.classList.remove('error');
+}
+
+const isValidEmail = (email) => {
+    const re = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    return re.test(String(email).toLowerCase());
 }
